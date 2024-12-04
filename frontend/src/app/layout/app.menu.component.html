@@ -1,0 +1,7 @@
+<ul class="layout-menu">
+    <ng-container *ngFor="let item of model; let i = index;">
+        <li app-menuitem *ngIf="!item.separator" [item]="item" [index]="i" [root]="true"></li>
+        <li *ngIf="item.separator" class="menu-separator"></li>
+    </ng-container>
+</ul>
+<div style="position:absolute; bottom:0; padding: 30px;"><b>MULTIFONO Server: </b><span [ngClass]="MultifonoStatus ? 'customer-badge status-qualified' : 'customer-badge status-unqualified'"><b>{{MultifonoStatus?'Ready':'Offline'}}</b></span></div>

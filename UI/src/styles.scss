@@ -1,0 +1,81 @@
+$gutter: 1rem; //for primeflex grid system
+@import "assets/layout/styles/layout/layout.scss";
+
+/* PrimeNG */
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/primeflex/primeflex.scss";
+@import "../node_modules/primeicons/primeicons.css";
+
+@import "assets/styles/badges.scss";
+@import "assets/styles/code.scss";
+
+
+.p-sidebar-right.p-sidebar-md {
+  width: 45% !important;
+}
+
+.p-sidebar-right.p-sidebar-md100 {
+  width: 75% !important;
+}
+
+.p-sidebar-header {
+  display: flex;
+  align-items: center;
+  font-size: 18px !important;
+  padding-left: 45px !important;
+}
+
+.p-component-overlay {
+  position: initial;
+}
+
+
+/*table bindPopup*/
+thead,
+tfoot {
+  background-color: #2a3795;
+  color: #ffffff;
+}
+
+/*This are for iconMarker stroke and label with SiteName*/
+#systemIcon {
+  stroke: black;
+  stroke-width: 25px;
+}
+
+.iconMarkerLabel {
+  background-color: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  padding: 2px 5px;
+  text-align: center;
+  transform: translate(-35%, -20%);
+  white-space: nowrap;
+  opacity: 0.8;
+}
+
+
+.multiline-span {
+  //display: inline-block;
+  //width: 80px;
+  //text-align: center;
+  text-overflow: ellipsis;
+  color: #2a3795;
+  /*overflow: hidden;*/
+}
+
+.p-dialog-content {
+  overflow-y: initial !important;
+  flex-grow: 1 !important;
+}
+
+.overlay {
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  cursor: default;
+}

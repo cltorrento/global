@@ -1,0 +1,33 @@
+/* Estilos para el Navbar */
+.navbar {
+    margin-bottom: 20px;
+    /* Espacio debajo del navbar */
+}
+
+/* Estilos para el Body */
+.container {
+    min-height: calc(100vh - 56px - 60px);
+    /* Altura mínima del contenedor menos navbar y footer */
+    margin-bottom: 60px;
+    /* Espacio para el footer */
+}
+
+/* Estilos para el Footer */
+.footer {
+    position: fixed;
+    /* Mantener el footer fijo */
+    bottom: 0;
+    /* Siempre al fondo */
+    left: 0;
+    /* Alineado a la izquierda */
+    width: 100%;
+    /* Ancho del 100% */
+    background-color: #f8f9fa;
+    /* Asegúrate de que el fondo sea visible */
+    text-align: center;
+    /* Centrar el texto */
+    padding: 10px 0;
+    /* Espaciado arriba y abajo */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil arriba */
+}

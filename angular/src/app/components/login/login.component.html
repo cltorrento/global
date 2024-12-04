@@ -1,0 +1,16 @@
+<div class="container vh-100 d-flex flex-column justify-content-center align-items-center">
+    <img src="assets/images/logo.png" alt="logo" width="300" class="mb-4"/>
+
+    <form class="custom-width">
+      <h2 class="text-center">Login</h2>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="user" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100" (click)="letMeIn()">Login</button>
+    </form>
+</div>

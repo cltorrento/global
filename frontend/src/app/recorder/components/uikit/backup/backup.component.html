@@ -1,0 +1,29 @@
+<p-toast key="tst"></p-toast>
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+			<h5>Backup Tables</h5><hr>
+			<div class="p-fluid p-formgrid grid">
+				<div class="field col-12 md:col-6">
+					<label for="calendar">Select Range Date (mm/dd/YYYY)</label>
+					<p-calendar dateFormat="mm/dd/yy" inputId="calendar" hideOnDateSelect="true" [(ngModel)]="rangeDate" [showIcon]="true" selectionMode="range" [numberOfMonths]="2" [showButtonBar]="true"></p-calendar>
+				</div>
+				<div class="field col-6 md:col-3">
+					<label htmlFor="state">Start Time</label>
+					<p-dropdown [options]="dropdownItems" optionLabel="value" (onChange)="setStartTime($event.value)" [(ngModel)]="startTime"></p-dropdown>
+				</div>
+				<div class="field col-6 md:col-3">
+					<label htmlFor="state">End Time</label>
+					<p-dropdown [options]="dropdownItems" optionLabel="value" (onChange)="setEndTime($event.value)" [(ngModel)]="endTime"></p-dropdown>
+				</div>
+			</div>
+			<div class="flex flex-wrap gap-2">
+				<button pButton pRipple label="Submit" [loading]="loading" (click)="xport()"></button>
+				<button pButton pRipple label="Download Backup" class="p-button-warning" *ngIf="showBtn" (click)="download()"></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
