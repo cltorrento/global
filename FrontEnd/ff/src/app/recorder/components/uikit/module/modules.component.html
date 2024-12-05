@@ -1,0 +1,136 @@
+<p-toast key="tst"></p-toast>
+
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h5>Modules and Options</h5><hr>
+            <p-toast></p-toast>
+            <p-table [value]="records" dataKey="module" [expandedRowKeys]="expandedRows" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem"></th>
+                        <th>Module Name</th>
+                        <th>is Active?</th>
+                        <th>Order</th>
+                        <th>Edit</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-modules let-expanded="expanded">
+                    <tr>
+                        <td>
+                            <button type="button" pButton pRipple [pRowToggler]="modules" class="p-button-text p-button-rounded p-button-plain"
+                                [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                        </td>
+                        <td style="min-width: 12rem;">{{modules.module}}</td>
+                        <td style="min-width: 10rem;"><span [ngClass]="modules.active ? 'customer-badge status-qualified' : 'customer-badge status-unqualified'">{{modules.active}}</span></td>
+
+                        <td style="min-width: 10rem;">{{modules.order}}</td>
+                        <td><button pButton type="button" icon="pi pi-file-edit" class="p-button-warning mr-2" (click)="selectModule(modules)"></button></td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="rowexpansion" let-records>
+                    <tr style="outline: thin dotted; outline-color: red;">
+                        <td colspan="7">
+                            <div class="p-3">
+                                <p-table [value]="records.options" dataKey="module" responsiveLayout="scroll">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th>Option Name</th>
+                                            <th>is Active?</th>
+                                            <th>Icon</th>
+                                            <th>Order</th>
+                                            <th style="width: 4rem"></th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-records>
+                                        <tr>
+                                            <td>{{records.option}}</td>
+                                            <td><span [ngClass]="records.active ? 'customer-badge status-qualified' : 'customer-badge status-unqualified'">{{records.active}}</span></td>
+                                            <td>{{records.icon}}</td>
+                                            <td>{{records.order}}</td>
+                                            <td><p-button type="button" icon="pi pi-search" (click)="selectOption(records)"></p-button></td>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td colspan="6">There are no options for this module yet.</td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+<p-dialog [(visible)]="showDialog" [style]="{width: '500px'}" header="MODIFY MODULE DETAIL" [modal]="true" class="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="field">
+            <div class="card p-fluid">
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <input type="hidden" id="idModule" name="idModule" [(ngModel)]="idModule"/>
+
+                        <h5>Module:</h5>
+                        <input pInputText type="text" [(ngModel)]="module"/>
+                   
+                        <h5>Order:</h5>
+                        <p-inputNumber mode="decimal" [(ngModel)]="order" [showButtons]="true" [min]="0" [max]="100"></p-inputNumber>
+
+                        <h5>Status: <span style="color: red;">Enable/Disable</span></h5>
+                        <p-inputSwitch [(ngModel)]="valSwitch"></p-inputSwitch>
+                    </div>
+                </div>
+            </div>
+            <button pButton pRipple label="Update" style="width: 50% !important" (click)="updateModule()"></button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="showOptionDialog" [style]="{width: '500px'}" header="MODIFY OPTION DETAIL" [modal]="true" class="p-fluid" (onHide)="closeOptionModal()">
+    <ng-template pTemplate="content">
+        <div class="field">
+            <div class="card p-fluid">
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <input type="hidden" id="idOption" name="idOption" [(ngModel)]="idOption"/>
+                        
+                        <h5>Module: <span style="color: red;">{{module | titlecase}}</span></h5>
+
+                        <h5>Option:</h5>
+                        <input pInputText type="text" [(ngModel)]="option"/>
+
+                        <h5>Icon:</h5>
+                        <p-dropdown [options]="dropdownIcons" optionLabel="value" (onChange)="setIcon($event.value)"></p-dropdown>
+                        <div class="card">
+                            <div class="mt-2 md:mt-0 flex align-items-center">
+                                <div class="col" style="display: flex !important; flex-direction: column !important;">
+                                    <div class="icon-wrapper" style="display: flex !important; justify-content: center !important; align-items: center !important;">
+                                        <i class="{{icon}}" style="font-size: xx-large !important;"></i>
+                                    </div>
+                                    <small style="align-self: center !important;">Actual Icon</small>
+                                </div>
+                                <div class="col" style="display: flex !important; flex-direction: column !important;" *ngIf="showNewIcon">
+                                    <div class="icon-wrapper" style="display: flex !important; justify-content: center !important; align-items: center !important;">
+                                        <i class="{{settedIcon}}" style="font-size: xx-large !important;"></i>
+                                    </div>
+                                    <small style="align-self: center !important;">Replace Icon</small>
+                                </div>
+                            </div>
+                        </div>
+                   
+                        <h5>Order:</h5>
+                        <p-inputNumber mode="decimal" [(ngModel)]="order" [showButtons]="true" [min]="0" [max]="100"></p-inputNumber>
+
+                        <h5>Status: <span style="color: red;">Enable/Disable</span></h5>
+                        <p-inputSwitch [(ngModel)]="valSwitch"></p-inputSwitch>
+                    </div>
+                </div>
+            </div>
+            <button pButton pRipple label="Update" style="width: 40% !important" (click)="updateOption()"></button>
+        </div>
+    </ng-template>
+</p-dialog>
