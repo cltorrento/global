@@ -1,0 +1,55 @@
+<div class="grid">
+	<div class="col-12 md:col-8">
+		<div class="card p-fluid">
+			<h5>Configuration</h5><hr>
+
+			<div class="p-formgrid grid">
+				<div class="field col">
+					<label htmlFor="seconds">Days to Clean Database</label>
+					<input pInputText id="seconds" placeholder="e.g: 90" type="text" [(ngModel)]="xdayScheduled"/>
+				</div>
+				<div class="field col">
+					<label htmlFor="minutes">Minutes - (@scheduled Task)</label>
+					<input pInputText id="minutes" placeholder="e.g: 10000" type="text" [(ngModel)]="xminuteScheduled"/>
+				</div>
+			</div>
+
+			<label htmlFor="email1">Clean Tables - (Cron Expression) - <b>(cron = "10 30 16 * * *")</b></label>
+			<div class="p-formgrid grid">
+				<div class="field col">
+					<label htmlFor="seconds">Seconds</label>
+					<input pInputText id="seconds" type="text" [(ngModel)]="xcronSeconds"/>
+				</div>
+				<div class="field col">
+					<label htmlFor="minutes">Minutes</label>
+					<input pInputText id="minutes" type="text" [(ngModel)]="xcronMinutes"/>
+				</div>
+				<div class="field col">
+					<label htmlFor="hour">Hour</label>
+					<input pInputText id="hour" type="text" [(ngModel)]="xcronHours"/>
+				</div>
+				<div class="field col">
+					<label htmlFor="day">Day(1-31)</label>
+					<input pInputText id="day" type="text" [(ngModel)]="xcronDays"/>
+				</div>
+				<div class="field col">
+					<label htmlFor="month">Month</label>
+					<input pInputText id="month" type="text" [(ngModel)]="xcronMonth"/>
+				</div>
+				<div class="field col">
+					<label htmlFor="dow">DoW</label>
+					<input pInputText id="dow" type="text" [(ngModel)]="xcronDow"/>
+				</div>
+			</div>
+			<div class="field">
+				<label htmlFor="age1">BackUp Folder - (Server Side)</label>
+				<input pInputText id="age1" placeholder="e.g: /home/user/folder" type="text" [(ngModel)]="xbackupFolder"/>
+			</div>
+			<div class="field" style="width: 100px;">
+				<p-toast></p-toast>
+				<button (click)="confirm2($event)" pButton pRipple class="p-element p-button p-component" label="Confirm" [loading]="loading"></button>
+				<p-confirmPopup key="confirm2"></p-confirmPopup>
+			</div>
+		</div>
+	</div>
+</div>
